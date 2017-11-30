@@ -1,0 +1,104 @@
+ギットのローカルリポジトリのパス
+xampp入れてから
+C://xampp/htdocs
+
+入り方
+mysql -u root
+
+データベース作成
+create database kelp_book;
+
+ユーザー作成、権限付与
+GRANT ALL ON *.* TO "kelp_book"@"localhost" IDENTIFIED BY "cyber";
+
+テーブル作成
+CREATE TABLE テーブル名(変数名 型、.....);
+
+テーブルのカラム変更
+ALTER TABLE テーブル名 MODIFY 変数名　型;
+            　　　　　 change 変える変数名　変数名　型;
+
+PHP
+
+スクリプト
+<?php //始まり 
+?>  //終わり
+
+セッション
+session_start(); //これ入れるとセッションになる
+$_SESSION['変数名'] //サーバーで保存される変数
+unset($_SESSION['変数名']) //サーバー変数削除
+
+データベース接続
+try catch の中にいれないとエラーになる
+
+try
+{
+    $db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); //データベース接続
+    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);　//エラーオブジェクトの作成
+
+    //ここに処理をかく
+
+
+}
+catch(PDOException $e)
+{
+    exit('データベース処理失敗:'.$e->getMessage());   
+}
+
+データベースのsql文
+
+//変数なし
+$sql = $db->prepare("ｓｑｌ文"); //sql文書き込み
+$sql->execute(); //sql文送信
+
+//変数あり
+$sql = $db->prepare("SELECT ~~~~ WHERE name = ? and id = ?");
+$sql->bindValue(1,$name);
+$sql->bindValue(2,$id);
+$sql->execute();
+
+while($row = sql->fetch()) //要素をrowに代入
+{
+    $name = $row['name'];
+    $id   = $row['id'];
+}
+count(); //要素数を調べる
+
+$row[0]['name']
+
+id,name,birth
+1, t,   0304 //1週目
+2, f,   0907 //2週目
+
+フォームの受け取り
+POST
+$_POST['formのname']
+GET
+$_GET[.....]
+
+変数が存在するか調べる
+isset(変数名) //あればtrueなければfalseを返す
+
+変数が空ではないことを調べる
+empty(変数名) //空ならtrue中身があればfalse
+if内部の使い方
+!empty()
+
+比較
+
+== 値比較
+=== 値と型
+
+!=
+!==
+<
+>
+<=
+>=
+
+++;
+--;
+
+chmod("パス",0777); //パーミッションの変更
+unlink("パス"); //ファイルの削除
