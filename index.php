@@ -30,9 +30,7 @@
     </head>
     <body>
         <?php if($status == "empty") :?>
-
-        <?php elseif($status == "  ") :?>
-
+            
         <?php endif;?>
     </body>
 </html>

@@ -3,7 +3,11 @@ xampp入れてから
 C://xampp/htdocs
 
 入り方
-mysql -u root
+mysql -u root //初回
+
+mysql -u kelp_book -p //2回目以降
+ENTER password:cyber
+
 
 データベース作成
 create database kelp_book;
@@ -11,12 +15,18 @@ create database kelp_book;
 ユーザー作成、権限付与
 GRANT ALL ON *.* TO "kelp_book"@"localhost" IDENTIFIED BY "cyber";
 
+create table user(id VARCHAR(10), name VARCHAR(255), password VARCHAR(255), manager VARCHAR(3));
+create table book(code INT, name VARCHAR(255), genre VARCHAR(255), loan VARCHAR(3), loanid VARCHAR(10));
+
+insert into user(id,name,password,manager) values("cyber","cyber","cyber","yes");
+
 テーブル作成
 CREATE TABLE テーブル名(変数名 型、.....);
 
 テーブルのカラム変更
 ALTER TABLE テーブル名 MODIFY 変数名　型;
             　　　　　 change 変える変数名　変数名　型;
+
 
 PHP
 
