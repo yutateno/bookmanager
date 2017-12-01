@@ -1,3 +1,5 @@
+http://localhost/"自分のギットリポジトリフォルダ名"/
+
 ギットのローカルリポジトリのパス
 xampp入れてから
 C://xampp/htdocs
