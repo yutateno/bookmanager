@@ -7,20 +7,20 @@
 	// ログインしていなかったらログイン画面に戻らせる
 	if(empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
-		loginget = "false";
+		$loginget = "false";
 		header("Location: ./index.php");
 		exit();
 	}
 	else
 	{
-		loginget = "true";
+		$loginget = "true";
 		try
 		{
 			$db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);　// エラーオブジェクトの作成
 
 			// 以下処理
-			yourmanage = $_SESSION['manager'];	// 管理者か判断
+			$yourmanage = $_SESSION['manager'];	// 管理者か判断
 		}
 		catch(PDOException $e)
 		{
