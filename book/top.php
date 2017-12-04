@@ -1,11 +1,11 @@
 <!--PHP-->
 <?php
 	session_start();
-	$loginget = "none";		// ���O�C���������ǂ���
-	$yourmanage = "none";		// �Ǘ��҂��ǂ���
+	$loginget = "none";		// ログインしたかどうか
+	$yourmanage = "none";		// 管理者かどうか
 	
-	// ���O�C�����Ă��Ȃ������烍�O�C����ʂɖ߂点��
-	if(empty($_SESSION['id']))			// $_SESSION���ăT�[�o�[�ɕۑ�����Ă���̂����瑼PHP�ł����������̂��Ȃ�
+	// ログインしていなかったらログイン画面に戻らせる
+	if(empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
 		header("Location: ./index.php");
@@ -16,15 +16,15 @@
 		$loginget = "true";
 		try
 		{
-			$db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // �f�[�^�x�[�X�ڑ�
-			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);�@// �G���[�I�u�W�F�N�g�̍쐬
+			$db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
+			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
-			// �ȉ�����
-			$yourmanage = $_SESSION['manager'];	// �Ǘ��҂����f
+			// 以下処理
+			$yourmanage = $_SESSION['manager'];	// 管理者か判断
 		}
 		catch(PDOException $e)
 		{
-			exit('�f�[�^�x�[�X�������s:'.$e->getMessage());
+			exit('データベース処理失敗:'.$e->getMessage());
 		}
 	}
 ?>
@@ -37,22 +37,22 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true") :?>		<!--���O�C���ς�-->
-			<?php if($yourmanage == "no") :?>		<!--��ʂ̏ꍇ-->
-				<h1>�R���s���[�^�����i�Ǘ�</h1>
+		<?php if($loginget == "true") :?>		<!--ログイン済み-->
+			<?php if($yourmanage == "no") :?>		<!--一般の場合-->
+				<h1>コンピュータ部備品管理</h1>
 				<br>
-				<a href="/list">�ꗗ</a><br><br>	<!--URL�̎w��ꏊ�����܂����킩���ĂȂ��̂łƂ肠�����K��-->
-				<a href="/lend">�ݏo</a><br><br>
+				<a href="/list">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
+				<a href="/lend">貸出</a><br><br>
 				<br>
-			<?php else:?>					<!--�Ǘ��҂̏ꍇ-->
-				<h1>�R���s���[�^�����i�Ǘ�</h1>
+			<?php else:?>					<!--管理者の場合-->
+				<h1>コンピュータ部備品管理</h1>
 				<br>
-				<a href="/list">�ꗗ</a><br><br>
-				<a href="/lend">�ݏo</a><br><br>
-				<a href="/manage">�Ǘ�</a><br><br>
+				<a href="/list">一覧</a><br><br>
+				<a href="/lend">貸出</a><br><br>
+				<a href="/manage">管理</a><br><br>
 				<br>
 			<?php endif ?>
-		<?php else:?>					<!--���O�C�����ĂȂ�-->
+		<?php else:?>					<!--ログインしてない-->
 			<?php 
 				header("Location : index.php");
 				exit();
