@@ -1,7 +1,14 @@
-top.php��list.php	// �ꗗ
-	 lend.php	// �ݏo
-	 manage.php	// �Ǘ��i�����j
+top.php→list.php /* 借りる一覧*/ →lend.php /* 借りようとしている本の情報及び貸出確認コマンド*/
 
-����A�ꗗ�̂Ƃ��őݏo�ł�����֗�����˂��Ďv�����肵������
-����˂ɖ{�̏��X�V�������Ȃ��Ƃ����Ȃ������ς���˂���
-�v������
+       →lendlist.php /* 借りている本の一覧*/ →lended.php /* 借りている本の情報確認*/
+
+	   →manage.php /* 管理（制限）*/ →popup.php /* 追加する本の情報入力*/
+
+									→deletelist.php /* 削除するときに見る一覧*/（list.phpとひとまとめにできると考えているけどとりあえず分ける）
+												   →delete.php /* 削除する本の情報と削除コマンド*/（lend.phpとやっていることは同じなので違う名前でまとめられると思うけど一応）
+
+									→lendhuman.php /* 借りている人と本の一覧*/（php名が気にくわないので変える予定）
+
+
+書籍に関するテーブル変更願い（いまいちわかっていませんがもう作ったテーブルはxamppでもずっと存在するものなら）
+create table book(code INT, name VARCHAR(255), author VARCHAR(255), data VARCHAR(255), loan VARCHAR(3), loanid VARCHAR(10)); 

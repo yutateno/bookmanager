@@ -1,4 +1,4 @@
-<!--管理者ページ-->
+<!--借りている人の一覧表示-->
 <!--PHP-->
 <?php
 	session_start();
@@ -21,17 +21,9 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
 			// 以下処理
-			$yourmanage = $_SESSION['namager'];	// 管理者か判断
-
-			if($yourmanage == "no")		// 管理者じゃなかったら
-			{
-				header("Location: ./../index.php");
-				exit();
-			}
-			else
-			{
-
-			}
+            $yourmanage = $_SESSION['namager'];	// 管理者か判断
+            
+            // 書籍を取得して、書籍を借りている人だけを取得する
 		}
 		catch(PDOException $e)
 		{
@@ -48,14 +40,9 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true" && $yourmanage == "yes") :?>		<!--ログイン済みであり管理者である-->
-            <h1>管理者ページ</h1>
-				<br>
-				<a href="Location : ./book/popup.php">書籍追加</a><br><br>
-				<a href="Location : ./book/deletelist.php">書籍削除</a><br><br>
-				<a href="Location : ./book/lenderhuman.php">借りている人の表示</a><br><br>
-				<br>
-		<?php else:?>
+		<?php if($loginget == "true" && $yourmanage == "YES") :?>		<!--ログイン済みであり管理者である-->
+            <!--借りている人の一覧「書籍名」「人」「借りた日」-->
+		<?php else:?>					<!--ログインしてない-->
 			<?php 
 				header("Location : ./../index.php");
 				exit();
