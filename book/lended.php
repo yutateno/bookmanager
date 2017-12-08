@@ -2,10 +2,10 @@
 <!--PHP-->
 <?php
 	session_start();
-	$loginget = "none";		// ログインしたかどうか
+	$loginget = "none";	  // ログインしたかどうか
 	
 	// ログインしていなかったらログイン画面に戻らせる
-	if(empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
+	if(!isset($_SESSION['id']) && empty($_SESSION['id']))    // $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
 		header("Location: ./../index.php");
@@ -17,7 +17,7 @@
 		try
 		{
 			$db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
-			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
+			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);  // エラーオブジェクトの作成
 
             // 以下処理
             
@@ -38,7 +38,7 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true") :?>		<!--ログイン済み-->
+		<?php if($loginget == "true") :?>    <!--ログイン済み-->
             <!--借りている本の内容を表示-->
 		<?php else:?>
 			<?php 

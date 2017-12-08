@@ -15,7 +15,7 @@
 	$data = "none";			// 発行年月日
 	
 	// ログインしていなかったらログイン画面に戻らせる
-	if(empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
+	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
 		header("Location: ./../index.php");

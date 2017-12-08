@@ -91,7 +91,7 @@
             <?php if($passerror == "true") echo "パスワードが間違っています。";?>
         <?php elseif($status == "success") :?>
             <?php 
-                header("Location : login/index.php");
+                header("Location : book/top.php");
                 exit();
             ?>
         <?php endif;?>

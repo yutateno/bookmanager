@@ -21,7 +21,7 @@
         <title>管理メニュー</title>
         <a href = '../login/logout.php'>ログアウト</a>
 		&emsp;
-		<a href ='../login/index.php'>ユーザーメニュー</a>
+		<a href ='../book/top.php'>ユーザーメニュー</a>
 		<?php
 		    if($_SESSION['manager'] == "yes")
 		    {
@@ -40,11 +40,11 @@
             <a href='manager.php'>管理者編集</a><br><br>
         <?php elseif($login == "false") : ?>
             管理者権限がありません。管理者に問い合わせてください。
-            <a href = '../user/index.php'>ユーザー画面へ</a>
+            <a href = '../book/top.php'>ユーザー画面へ</a>
         <?php else : ?>
             <h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
             管理者に問い合わせてください
-            <a href = '../user/index.php'>ユーザー画面へ</a>
+            <a href = '../book/top.php'>ユーザー画面へ</a>
         <?php endif; ?>
     </body>
 </html>

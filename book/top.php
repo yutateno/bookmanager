@@ -5,10 +5,10 @@
 	$yourmanage = "none";		// 管理者かどうか
 	
 	// ログインしていなかったらログイン画面に戻らせる
-	if(empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
+	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
-		header("Location: ./../index.php");
+		header("Location: ../index.php");
 		exit();
 	}
 	else
@@ -35,28 +35,29 @@
 	<head>
 		<meta charset ="utf-8">
 		<title></title>
+		<a href = '../login/logout.php'>ログアウト</a>
+		&emsp;
+		<a href ='./index.php'>ユーザーメニュー</a>
+		<?php
+		    if($_SESSION['manager'] == "yes")
+		    {
+		            echo "<span style ='float:right'><a href = 'index.php'>管理者メニュー</a></span>";
+		    }
+		?>
+		<hr>
 	</head>
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
-			<?php if($yourmanage == "yes"):?>					<!--管理者の場合-->
-				<h1>コンピュータ部備品管理</h1>
-				<br>
-				<a href="Location : ./book/list.php">一覧</a><br><br>
-				<a href="Location : ./book/lendlist.php">借りている本</a><br><br>
-				<a href="Location : ./book/manage.php">管理</a><br><br>
-				<br>
-			<?php else :?>		<!--一般の場合-->
-				<h1>コンピュータ部備品管理</h1>
-				<br>
-				<a href="Location : ./book/list.php">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
-				<a href="Location : ./book/lendlist.php">借りている本</a><br><br>
-				<br>
-			<?php endif ?>
-		<?php else:?>      <!--ログインしてない-->
-			<?php 
-				header("Location : ./../index.php");
-				exit();
-			?>
+			<h1>コンピュータ部備品管理</h1>
+			<br>
+			<a href="Location : ./list.php">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当 >> 直した--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
+			<a href="Location : ./lendlist.php">借りている本</a><br><br>
+			<?php if($yourmanage == "yes") echo "<a href='Location : ./manage.php'>管理</a><br><br>";?>    <!--管理者の場合-->
+			<br>
+		<?php else:?>      <!--ここエラーじゃね？-->
+			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
+            管理者に問い合わせてください
+            <a href = '../index.php'>ログイン画面へ</a>
 		<?php endif ?>
 	</body>
 </html>
