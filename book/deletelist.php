@@ -21,7 +21,7 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
             // 以下処理
-            $manager = $_SESSION['namager'];	// 管理者か判断
+            $manager = $_SESSION['manager'];	// 管理者か判断
 
             // 一覧を取得
 		}
@@ -40,7 +40,7 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true" && $manager == "YES") :?>		<!--ログイン済みであり管理者のとき-->
+		<?php if($loginget == "true" && $manager == "yes") :?>		<!--ログイン済みであり管理者のとき-->
             <!--一覧を表示-->
 		<?php else:?>
 			<?php 

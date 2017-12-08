@@ -21,7 +21,7 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
 			// 以下処理
-            $yourmanage = $_SESSION['namager'];	// 管理者か判断
+            $yourmanage = $_SESSION['manager'];	// 管理者か判断
             
             // 書籍の内容を取得
 		}
@@ -40,7 +40,7 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true" && $yourmanage == "YES") :?>		<!--ログイン済みであり管理者のとき-->
+		<?php if($loginget == "true" && $yourmanage == "yes") :?>		<!--ログイン済みであり管理者のとき-->
             <!--参考書の内容を表示と削除のコマンド-->
 		<?php else:?>
 			<?php 

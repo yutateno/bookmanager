@@ -30,7 +30,7 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
 			// 以下処理
-			$yourmanage = $_SESSION['namager'];	// 管理者か判断
+			$yourmanage = $_SESSION['manager'];	// 管理者か判断
 
 			if($yourmanage == "no")		// 管理者じゃなかったら
 			{
@@ -82,7 +82,7 @@
 		<title></title>
 	</head>
 	<body>
-		<?php if($loginget == "true" && $yourmanage == "YES") :?>		<!--ログイン済みであり管理者である-->
+		<?php if($loginget == "true" && $yourmanage == "yes") :?>		<!--ログイン済みであり管理者である-->
             <!--追加する書籍に必要なコマンド-->
 			追加する書籍の情報を入力してください。<br>
 			<form action = "popup.php" method = "POST">

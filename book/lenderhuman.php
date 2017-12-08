@@ -21,7 +21,7 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
 			// 以下処理
-            $yourmanage = $_SESSION['namager'];	// 管理者か判断
+            $yourmanage = $_SESSION['manager'];	// 管理者か判断
             
             // 書籍を取得して、書籍を借りている人だけを取得する
 		}

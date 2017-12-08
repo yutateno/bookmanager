@@ -34,7 +34,7 @@
                     {
                         $_SESSION['id'] =$id;
                         $_SESSION['name'] =$row['name'];
-                        $_SESSION['namager'] =$row['manager'];
+                        $_SESSION['manager'] =$row['manager'];
                         $status ="success";
                     }
                     else
