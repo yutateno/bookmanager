@@ -9,7 +9,7 @@
 	$author = "none";
 	$data = "none";
 	$loan = "none";
-	$first = "true";
+	//$first = "true";
 	
 	// ログインしていなかったらログイン画面に戻らせる
 	if(!isset($_SESSION['id']) && empty($_SESSION['id'])) // $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
@@ -31,33 +31,11 @@
 			// 一覧を取得
 			$sql = $db->prepare("SELECT code, name, author, data, loan FROM book");
 			$sql->execute();
-
-			print("<table border=1>");
 			
 			while($row =$sql->fetch())
 			{
-				$code = $row['code'];
-				$name = $row['name'];
-				$author = $row['author'];
-				$data = $row['data'];
-				$loan = $row['loan'];
-
-				if($first == "false")
-				{
-					print("<tr>");
-				
-					print("<td>".$name."</td>");
-					print("<td>".$author."</td>");
-					print("<td>".$data."</td>");
-					print("<td>".$loan."</td>");
-
-					print("</tr>");
-				}
-
-				$first = "false";
+				$rows[] = $row;
 			}
-			
-			print("</table>");
 		}
 		catch(PDOException $e)
 		{
@@ -76,6 +54,25 @@
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--一覧を表示-->
+			<table>
+				<tr><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
+				<?php
+				foreach($rows as $row){
+				?>
+				<tr><td><?=htmlspecialchars($row['name'], ENT_QUOTES)?></td>
+				<td><?=htmlspecialchars($row['author'], ENT_QUOTES)?></td>
+				<td><?=htmlspecialchars($row['data'], ENT_QUOTES)?></td>
+				<td><?=htmlspecialchars($row['loan'], ENT_QUOTES)?></td>
+				<td>
+					<form action="lend.php" method="post">
+						<input type="submit" value="詳細">
+						<input type="hidden" name="code" value="<?=$row['code']?>">
+					</form>
+				</td>
+				<?php
+				}
+				?>
+            </table><br>
 		<?php else:?>      <!--ここエラーじゃね？-->
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
             管理者に問い合わせてください

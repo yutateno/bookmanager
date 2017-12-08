@@ -39,22 +39,22 @@
 			}
 			else
 			{
-				if(!empty($_POST['bookid']) && !empty($_POST['title'])
+				if(!empty($_POST['bookid']) && !empty($_POST['booktitle'])
 				&& !empty($_POST['author']) && !empty($_POST['issuedata']))	// 入力済み
 				{
 					$inputerror = "false";
 
 					$barcode = $_POST['bookid'];
-					$title = $_POST['title'];
+					$title = $_POST['booktitle'];
 					$author = $_POST['author'];
 					$data = $_POST['issuedata'];
 
-					$sql =$db->prepare("INSERT INTO book VALUES($barcode, $title, $author, $data, 'no', 'none')");
+					$sql =$db->prepare("INSERT INTO book VALUES('$barcode', '$title', '$author', '$data', 'no', 'none')");
 					$sql->execute();
 
 					$status = "success";
 				}
-				else if(!empty($_POST['bookid']) || !empty($_POST['title'])
+				else if(!empty($_POST['bookid']) || !empty($_POST['booktitle'])
 				|| !empty($_POST['author']) || !empty($_POST['issuedata']))	// 入力不足
 				{
 					$inputerror = "true";
@@ -88,7 +88,7 @@
 			<form action = "popup.php" method = "POST">
                 <table>
                     <tr><td>バーコード</td><td><input type ="text" name ="bookid"></td></tr>
-                    <tr><td>タイトル</td><td><input type ="text" name ="title"></td></tr>
+                    <tr><td>タイトル</td><td><input type ="text" name ="booktitle"></td></tr>
                     <tr><td>著者</td><td><input type ="text" name ="author"></td></tr>
                     <tr><td>発行年月日</td><td><input type ="text" name ="issuedata"></td></tr>
                 </table><br>
