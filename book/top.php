@@ -17,7 +17,7 @@
 		try
 		{
 			$db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
-			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
+			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); // エラーオブジェクトの作成
 
 			// 以下処理
 			$yourmanage = $_SESSION['namager'];	// 管理者か判断
@@ -52,7 +52,7 @@
 				<a href="Location : ./book/lendlist.php">借りている本</a><br><br>
 				<br>
 			<?php endif ?>
-		<?php else:?>					<!--ログインしてない-->
+		<?php else:?>      <!--ログインしてない-->
 			<?php 
 				header("Location : ./../index.php");
 				exit();
