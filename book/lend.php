@@ -31,9 +31,21 @@
 
             // 以下処理
 			// 書籍の内容を取得
-			$code = $_POST['code'];
+			if(!empty($_POST['code']))
+			{
+				$_SESSION['bookcode'] = $_POST['code'];
+			}
+			if(!empty($_SESSION['bookcode']))
+			{
+				$code = $_SESSION['bookcode'];
+			}
 
-			$sql = $db->prepare("SELECT code, name, author, data, loan FROM book");
+			if(!empty($_POST['loan']))
+			{
+				$loanflag = $_POST['loan'];
+			}
+
+			$sql = $db->prepare("SELECT code, name, author, data, loan, loanid FROM book");
 			$sql->execute();
 
 			while($row =$sql->fetch())
@@ -46,22 +58,19 @@
 					$loan = $row['loan'];
 					$loanid = $row['loanid'];
 					$status = "success";
-				}
-			}
-			$status = "error";
-
-			if($_POST['loan'] == "yes")
-			{
-				$loanflag = "true";
-				$loan = "yes";
-				while($row =$sql->fetch())
-				{
-					if($code == $row['code'])
+					if($loanflag == "true")
 					{
-						$row['loan'] = $loan;
-						$row['loanid'] = $_SESSION['id'];
+						$loan = "yes";
+						$loanid = $_SESSION['id'];
 					}
 				}
+			}
+
+			if($loanflag == "true")
+			{
+				$sql = $db->prepare("UPDATE book SET loan = :loan, loanid = :loanid WHERE code = :code");
+				$params = array(':loan' => $loan, ':loanid' => $loanid, ':code' => $code);
+				$sql->execute($params);
 			}
 		}
 		catch(PDOException $e)
@@ -100,8 +109,8 @@
                 </table><br>
 				<?php if($loan == "no") :?> <!--貸出コマンドを表示-->
 					<form action="lend.php" method="POST">
+						<input type="hidden" name="loan" value="true">
 						<input type="submit" value="借りる">
-						<input type="hidden" name="loan" value="yes">
 					</form>
 				<?php else :?>
 					<?php if($loanid == $_SESSION['id']) :?> <!--ユーザーが貸し出しているとき-->
@@ -110,10 +119,10 @@
 						貸し出している人がいるため借りられません
 					<?php endif ?>
 				<?php endif ?>
-				<?php if($loanflag == "true") echo "貸出処理が完了しました。";?>
-			<?php else if($status == "error") :?>
+			<?php else :?>
 				<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
             	書籍が存在しませんでした。管理者に問い合わせてください
+				<?=htmlspecialchars($status, ENT_QUOTES)?>
             	<a href = './top.php'>トップ画面へ</a>
 			<?php endif ?>	
 		<?php else:?>      <!--ここエラーじゃね？-->
