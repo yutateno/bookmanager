@@ -3,7 +3,17 @@
 <?php
 	session_start();
 	$loginget = "none";		// ログインしたかどうか
-	
+
+	$code = "none"; // 書籍のID
+	$name = "none"; // 書籍の名前
+	$author = "none"; // 書籍の著者名
+	$data = "none"; // 書籍の発行年月日
+	$loan = "none"; // 書籍を借りている人がいるかどうか
+	$loanid = "none"; // 貸出者
+
+	$status = "none"; // 現在の状態
+	$loanflag = "none"; // 貸出したかどうか
+
 	// ログインしていなかったらログイン画面に戻らせる
 	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
@@ -20,8 +30,39 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
             // 以下処理
-            
-            // 書籍の内容を取得
+			// 書籍の内容を取得
+			$code = $_POST['code'];
+
+			$sql = $db->prepare("SELECT code, name, author, data, loan FROM book");
+			$sql->execute();
+
+			while($row =$sql->fetch())
+			{
+				if($code == $row['code'])
+				{
+					$name = $row['name'];
+					$author = $row['author'];
+					$data = $row['data'];
+					$loan = $row['loan'];
+					$loanid = $row['loanid'];
+					$status = "success";
+				}
+			}
+			$status = "error";
+
+			if($_POST['loan'] == "yes")
+			{
+				$loanflag = "true";
+				$loan = "yes";
+				while($row =$sql->fetch())
+				{
+					if($code == $row['code'])
+					{
+						$row['loan'] = $loan;
+						$row['loanid'] = $_SESSION['id'];
+					}
+				}
+			}
 		}
 		catch(PDOException $e)
 		{
@@ -40,12 +81,45 @@
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--書籍の内容を表示-->
-            <!--借りるコマンドを表示-->
-		<?php else:?>
-			<?php 
-				header("Location : ./../index.php");
-				exit();
-			?>
+			<?php if($status == "success") :?>
+				<!--借りるコマンドを表示-->
+				<table>
+                    <tr><td>タイトル</td>
+						<td><?=htmlspecialchars($name, ENT_QUOTES)?></td></tr>
+                    <tr><td>著者</td>
+						<td><?=htmlspecialchars($author, ENT_QUOTES)?></td></tr>
+                    <tr><td>発行年月日</td>
+						<td><?=htmlspecialchars($data, ENT_QUOTES)?></td></tr>
+                    <tr><td>貸出有無</td>
+						<td>
+							<?php if($loan == "yes") :?>
+								有
+							<?php else :?>
+								無
+							<?php endif ?></td></tr>
+                </table><br>
+				<?php if($loan == "no") :?> <!--貸出コマンドを表示-->
+					<form action="lend.php" method="POST">
+						<input type="submit" value="借りる">
+						<input type="hidden" name="loan" value="yes">
+					</form>
+				<?php else :?>
+					<?php if($loanid == $_SESSION['id']) :?> <!--ユーザーが貸し出しているとき-->
+						あなたが貸し出しています。
+					<?php else :?>
+						貸し出している人がいるため借りられません
+					<?php endif ?>
+				<?php endif ?>
+				<?php if($loanflag == "true") echo "貸出処理が完了しました。";?>
+			<?php else if($status == "error") :?>
+				<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
+            	書籍が存在しませんでした。管理者に問い合わせてください
+            	<a href = './top.php'>トップ画面へ</a>
+			<?php endif ?>	
+		<?php else:?>      <!--ここエラーじゃね？-->
+			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
+            管理者に問い合わせてください
+            <a href = '../index.php'>ログイン画面へ</a>
 		<?php endif ?>
 	</body>
 </html>

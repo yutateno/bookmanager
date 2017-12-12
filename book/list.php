@@ -62,9 +62,14 @@
 				<tr><td><?=htmlspecialchars($row['name'], ENT_QUOTES)?></td>
 				<td><?=htmlspecialchars($row['author'], ENT_QUOTES)?></td>
 				<td><?=htmlspecialchars($row['data'], ENT_QUOTES)?></td>
-				<td><?=htmlspecialchars($row['loan'], ENT_QUOTES)?></td>
+				<td><?php if($row['loan'] == 'yes') :?>
+						有
+					<?php else:?>
+						無
+					<?php endif ?>
+				</td>
 				<td>
-					<form action="lend.php" method="post">
+					<form action="lend.php" method="POST">
 						<input type="submit" value="詳細">
 						<input type="hidden" name="code" value="<?=$row['code']?>">
 					</form>

@@ -1,4 +1,4 @@
-top.php→list.php /* 借りる一覧*/ →lend.php /* 借りようとしている本の情報及び貸出確認コマンド*/
+﻿top.php→list.php /* 借りる一覧*/ →lend.php /* 借りようとしている本の情報及び貸出確認コマンド*/
 
        →lendlist.php /* 借りている本の一覧*/ →lended.php /* 借りている本の情報確認*/
 
@@ -11,4 +11,4 @@ top.php→list.php /* 借りる一覧*/ →lend.php /* 借りようとしてい�
 
 
 書籍に関するテーブル変更願い（いまいちわかっていませんがもう作ったテーブルはxamppでもずっと存在するものなら）
-create table book(code INT, name VARCHAR(255), author VARCHAR(255), data VARCHAR(255), loan VARCHAR(3), loanid VARCHAR(10)); 
+create table book(code VARCHAR(255), name VARCHAR(255), author VARCHAR(255), data VARCHAR(255), loan VARCHAR(3), loanid VARCHAR(10)); 
