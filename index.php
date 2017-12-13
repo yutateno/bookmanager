@@ -74,16 +74,16 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>kelp連絡網</title>
+		<title>本の管理</title>
 	</head>
 	<body>
-		<h1>連絡網</h1>
+		<h1>本の管理</h1>
 		<?php  if($status == "allready") :
-		    header("Location: user/index.php");
+		    header("Location: book/top.php");
 			exit();
 		?>
 	    <?php elseif ($status == "success") :
-		    header("Location: user/index.php");
+		    header("Location: book/top.php");
 			exit();
 		?>
 		<?php elseif($status == "empty") : ?>
@@ -95,7 +95,6 @@
 			<?php if($inputerror == "true") echo "パスワードかIDが間違っています。"; ?>
 			<?php if($emptyerror == "true") echo "IDかパスワードが入力されていません。"; ?>
 			<?php if($fatalerror == "true") echo "不正なIDです。再度繰り返して変わらなければ管理者に連絡してください。"; ?>
-			<br><a href='forgetpass.php'>パスワードを忘れたらこちら</a><br>
 		<?php else :  ?>
 			エラー　クッキーを削除してやり直してください。
 		<?php endif; ?>
