@@ -7,7 +7,7 @@
 	$fatalerror = "false";
     
     try{
-        $db = new PDO('mysql:host=localhost;dbname=project;charset=utf8','j15253','ikkaku3boy');
+        $db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber');
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         if(isset($_SESSION["id"]))
 		{
