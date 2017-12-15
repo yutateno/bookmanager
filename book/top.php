@@ -37,11 +37,11 @@
 		<title></title>
 		<a href = '../login/logout.php'>ログアウト</a>
 		&emsp;
-		<a href ='./index.php'>ユーザーメニュー</a>
+		<a href ='./top.php'>ユーザーメニュー</a>
 		<?php
 		    if($_SESSION['manager'] == "yes")
 		    {
-		            echo "<span style ='float:right'><a href = 'index.php'>管理者メニュー</a></span>";
+		            echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
 		    }
 		?>
 		<hr>
@@ -50,9 +50,9 @@
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
 			<h1>コンピュータ部備品管理</h1>
 			<br>
-			<a href="Location : ./list.php">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当 >> 直した--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
-			<a href="Location : ./lendlist.php">借りている本</a><br><br>
-			<?php if($yourmanage == "yes") echo "<a href='Location : ./manage.php'>管理</a><br><br>";?>    <!--管理者の場合-->
+			<a href="./list.php">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当 >> 直した--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
+			<a href="./lendlist.php">借りている本</a><br><br>
+			<?php if($yourmanage == "yes") echo "<a href='./manage.php'>管理</a><br><br>";?>    <!--管理者の場合-->
 			<br>
 		<?php else:?>      <!--ここエラーじゃね？-->
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>

@@ -45,8 +45,8 @@
         <h1>ユーザー一覧</h1>
         <?php if($status =="success") : ?>
             <table>
-                <tr bgcolor='#99FF99'><th>ID</th><th>NAME</th><th>BIRTH</th><th>ADDRESS</th><th>MANAGER</th></tr>
-                <?php while($row =$sql->fetch()){ echo "<tr bgcolor='#EEEEEE'><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['birth'] . "</td><td>" . $row['address'] . "</td><td>" . $row['manager']  . "</td></tr>"; }?>
+                <tr bgcolor='#99FF99'><th>ID</th><th>NAME</th><th>MANAGER</th></tr>
+                <?php while($row =$sql->fetch()){ echo "<tr bgcolor='#EEEEEE'><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['manager']  . "</td></tr>"; }?>
             </table>
             <form action ='index.php' method ='POST'><p><input type ='submit' value ='戻る'></p></form>
         <?php endif; ?>

@@ -5,11 +5,9 @@
         $db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
 
-        $sql = $db->prepare("UPDATE FROM user SET password ='cyber' WHERE id = 'cyber'");
+        $sql = $db->prepare("UPDATE  user SET password =? WHERE id = 'cyber'");
+        $sql->bindValue(1,$hash);
         $sql->execute();
-
-        header("Location : ./index.php");
-        exit();
     }
     catch(PDOException $e)
     {

@@ -18,7 +18,7 @@
             $id        = $_POST['id'];
             $password  = $_POST['password'];
             
-            $sql = $db->prepare("SELECT password,name,manager,address FROM user WHERE id = ?");
+            $sql = $db->prepare("SELECT password,name,manager FROM user WHERE id = ?");
             $sql->bindValue(1,"{$id}");
             $sql->execute();
 
