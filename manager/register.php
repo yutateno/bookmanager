@@ -13,8 +13,6 @@
         try{
             $db = new PDO('mysql:host=localhost;dbname=kelp_book;charset=utf8','kelp_book','cyber'); // データベース接続
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);		// エラーオブジェクトの作成
-
-            $nen = date('Y');
             
             if(!empty($_POST["id"]) && !empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["repassword"]) && !empty($_POST["manager"]))
             {
@@ -41,7 +39,7 @@
                     $hash =  password_hash($password, PASSWORD_DEFAULT);
                     
                     $db->beginTransaction();
-                    $sql = $db->prepare("INSERT INTO user VALUES( ? , ? , ? , ?) FOR UPDATE");
+                    $sql = $db->prepare("INSERT INTO user(id,name,password,manager) VALUES( ? , ? , ? , ?) FOR UPDATE");
                     $sql->bindValue(1,"{$id}");
                     $sql->bindValue(2,"{$name}");
                     $sql->bindValue(3,"{$hash}");
