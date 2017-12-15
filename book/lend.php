@@ -86,10 +86,21 @@
 	<head>
 		<meta charset ="utf-8">
 		<title></title>
+		<a href = '../login/logout.php'>ログアウト</a>
+		&emsp;
+		<a href ='./top.php'>ユーザーメニュー</a>
+		<?php
+		    if($_SESSION['manager'] == "yes")
+		    {
+		            echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
+		    }
+		?>
+		<hr>
 	</head>
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--書籍の内容を表示-->
+			<h1>書籍詳細</h1>
 			<?php if($status == "success") :?>
 				<!--借りるコマンドを表示-->
 				<table>
@@ -119,6 +130,7 @@
 						貸し出している人がいるため借りられません
 					<?php endif ?>
 				<?php endif ?>
+				<form action ='./list.php' method ='POST'><input type ='submit' value ='戻る'></form>
 			<?php else :?>
 				<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
             	書籍が存在しませんでした。管理者に問い合わせてください

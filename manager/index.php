@@ -38,6 +38,7 @@
             <a href='register.php'>ユーザー登録</a><br><br>
             <a href='delete.php'>ユーザー削除</a><br><br>
             <a href='manager.php'>管理者編集</a><br><br>
+            <a href='../book/manage.php'>書籍編集</a><br><br>
         <?php elseif($login == "false") : ?>
             管理者権限がありません。管理者に問い合わせてください。
             <a href = '../book/top.php'>ユーザー画面へ</a>

@@ -50,10 +50,21 @@
 	<head>
 		<meta charset ="utf-8">
 		<title></title>
+		<a href = '../login/logout.php'>ログアウト</a>
+		&emsp;
+		<a href ='./top.php'>ユーザーメニュー</a>
+		<?php
+		    if($_SESSION['manager'] == "yes")
+		    {
+		            echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
+		    }
+		?>
+		<hr>
 	</head>
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--一覧を表示-->
+			<h1>書籍一覧</h1>
 			<table>
 				<tr><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
 				<?php
@@ -78,6 +89,7 @@
 				}
 				?>
             </table><br>
+			<form action ='./top.php' method ='POST'><input type ='submit' value ='戻る'></form>
 		<?php else:?>      <!--ここエラーじゃね？-->
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
             管理者に問い合わせてください

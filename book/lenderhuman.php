@@ -9,7 +9,7 @@
 	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
-		header("Location: ./../index.php");
+		header("Location: ../index.php");
 		exit();
 	}
 	else
@@ -38,15 +38,26 @@
 	<head>
 		<meta charset ="utf-8">
 		<title></title>
+		<a href = '../login/logout.php'>ログアウト</a>
+		&emsp;
+		<a href ='./top.php'>ユーザーメニュー</a>
+		<?php
+		    if($_SESSION['manager'] == "yes")
+		    {
+		            echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
+		    }
+		?>
+		<hr>
 	</head>
 	<body>
-		<?php if($loginget == "true" && $yourmanage == "YES") :?>		<!--ログイン済みであり管理者である-->
+		<?php if($loginget == "true" && $yourmanage == "yes") :?>		<!--ログイン済みであり管理者である-->
             <!--借りている人の一覧「書籍名」「人」「借りた日」-->
+			<h1>書籍貸し出し中のみ一覧</h1>
+			<form action ='./manage.php' method ='POST'><input type ='submit' value ='戻る'></form>
 		<?php else:?>					<!--ログインしてない-->
-			<?php 
-				header("Location : ./../index.php");
-				exit();
-			?>
+			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
+            管理者に問い合わせてください
+            <a href = '../index.php'>ログイン画面へ</a>
 		<?php endif ?>
 	</body>
 </html>

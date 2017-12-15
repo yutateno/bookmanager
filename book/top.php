@@ -2,7 +2,6 @@
 <?php
 	session_start();
 	$loginget = "none";		// ログインしたかどうか
-	$yourmanage = "none";		// 管理者かどうか
 	
 	// ログインしていなかったらログイン画面に戻らせる
 	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
@@ -20,7 +19,6 @@
 			$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); // エラーオブジェクトの作成
 
 			// 以下処理
-			$yourmanage = $_SESSION['manager'];	// 管理者か判断
 		}
 		catch(PDOException $e)
 		{
@@ -48,11 +46,10 @@
 	</head>
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
-			<h1>コンピュータ部備品管理</h1>
+			<h1>コンピュータ部備品貸出</h1>
 			<br>
 			<a href="./list.php">一覧</a><br><br>	<!--URLの指定場所がいまいちわかってないのでとりあえず適当 >> 直した--><!--URLの指定場所がいまいちわかってないのでとりあえず適当-->
 			<a href="./lendlist.php">借りている本</a><br><br>
-			<?php if($yourmanage == "yes") echo "<a href='./manage.php'>管理</a><br><br>";?>    <!--管理者の場合-->
 			<br>
 		<?php else:?>      <!--ここエラーじゃね？-->
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
