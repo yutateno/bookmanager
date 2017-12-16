@@ -18,7 +18,7 @@
 	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
-		header("Location: ./../index.php");
+		header("Location: ../index.php");
 		exit();
 	}
 	else
@@ -103,15 +103,15 @@
 			<h1>書籍詳細</h1>
 			<?php if($status == "success") :?>
 				<!--借りるコマンドを表示-->
-				<table>
-                    <tr><td>タイトル</td>
-						<td><?=htmlspecialchars($name, ENT_QUOTES)?></td></tr>
-                    <tr><td>著者</td>
-						<td><?=htmlspecialchars($author, ENT_QUOTES)?></td></tr>
-                    <tr><td>発行年月日</td>
-						<td><?=htmlspecialchars($data, ENT_QUOTES)?></td></tr>
-                    <tr><td>貸出有無</td>
-						<td>
+				<table border='1'>
+                    <tr><td bgcolor='#99FF99'>タイトル</td>
+						<td bgcolor='#EEEEEE'><?=htmlspecialchars($name, ENT_QUOTES)?></td></tr>
+                    <tr><td bgcolor='#99FF99'>著者</td>
+						<td bgcolor='#EEEEEE'><?=htmlspecialchars($author, ENT_QUOTES)?></td></tr>
+                    <tr><td bgcolor='#99FF99'>発行年月日</td>
+						<td bgcolor='#EEEEEE'><?=htmlspecialchars($data, ENT_QUOTES)?></td></tr>
+                    <tr><td bgcolor='#99FF99'>貸出有無</td>
+						<td bgcolor='#EEEEEE'>
 							<?php if($loan == "yes") :?>
 								有
 							<?php else :?>

@@ -4,18 +4,17 @@
 	session_start();
 	$loginget = "none"; // ログインしたかどうか
 
-	$code = "none";
-	$name = "none";
-	$author = "none";
-	$data = "none";
-	$loan = "none";
-	//$first = "true";
+	$code = "none"; // 書籍番号
+	$name = "none"; // 書籍名
+	$author = "none"; // 書籍著者
+	$data = "none"; // 書籍発行年月日
+	$loan = "none"; // 書籍貸出有無
 	
 	// ログインしていなかったらログイン画面に戻らせる
 	if(!isset($_SESSION['id']) && empty($_SESSION['id'])) // $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
 	{
 		$loginget = "false";
-		header("Location: ./../index.php");
+		header("Location: ../index.php");
 		exit();
 	}
 	else
@@ -65,12 +64,12 @@
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--一覧を表示-->
 			<h1>書籍一覧</h1>
-			<table>
-				<tr><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
+			<table border='1'>
+				<tr bgcolor='#99FF99'><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
 				<?php
 				foreach($rows as $row){
 				?>
-				<tr><td><?=htmlspecialchars($row['name'], ENT_QUOTES)?></td>
+				<tr bgcolor='#EEEEEE'><td><?=htmlspecialchars($row['name'], ENT_QUOTES)?></td>
 				<td><?=htmlspecialchars($row['author'], ENT_QUOTES)?></td>
 				<td><?=htmlspecialchars($row['data'], ENT_QUOTES)?></td>
 				<td><?php if($row['loan'] == 'yes') :?>

@@ -97,11 +97,11 @@
 			<h1>書籍追加</h1>
 			追加する書籍の情報を入力してください。<br>
 			<form action = "popup.php" method = "POST">
-                <table>
-                    <tr><td>バーコード</td><td><input type ="text" name ="bookid"></td></tr>
-                    <tr><td>タイトル</td><td><input type ="text" name ="booktitle"></td></tr>
-                    <tr><td>著者</td><td><input type ="text" name ="author"></td></tr>
-                    <tr><td>発行年月日</td><td><input type ="text" name ="issuedata"></td></tr>
+                <table border='1'>
+                    <tr><td bgcolor='#99FF99'>バーコード</td><td bgcolor='#EEEEEE'><input type ="text" name ="bookid"></td></tr>
+                    <tr><td bgcolor='#99FF99'>タイトル</td><td bgcolor='#EEEEEE'><input type ="text" name ="booktitle"></td></tr>
+                    <tr><td bgcolor='#99FF99'>著者</td><td bgcolor='#EEEEEE'><input type ="text" name ="author"></td></tr>
+                    <tr><td bgcolor='#99FF99'>発行年月日</td><td bgcolor='#EEEEEE'><input type ="text" name ="issuedata"></td></tr>
                 </table><br>
                 <input type ="submit" value ="登録">
             </form>

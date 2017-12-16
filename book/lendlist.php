@@ -3,7 +3,14 @@
 <?php
 	session_start();
     $loginget = "none";		// ログインしたかどうか
-    $userID = "none";       // ユーザーID
+	$userID = $_SESSION['id'];
+	
+	$code = "none"; // 書籍番号
+	$name = "none"; // 書籍名
+	$author = "none"; // 書籍著者
+	$data = "none"; // 書籍発行年月日
+
+	$booknum = "none"; // 借りている書籍のリスト数
 	
 	// ログインしていなかったらログイン画面に戻らせる
 	if(!isset($_SESSION['id']) && empty($_SESSION['id']))			// $_SESSIONってサーバーに保存されてるものだから他PHPでも引っ張れるのかなと
@@ -23,7 +30,14 @@
             // 以下処理
             
             // 自身のIDから借りている本を取得する
-            $userID = $_SESSION['id'];
+			$sql = $db->prepare("SELECT code, name, author, data FROM book WHERE loanid = $userID");
+			$sql->execute();
+			
+			while($row =$sql->fetch())
+			{
+				$rows[] = $row;
+				$booknum = "some";
+			}
 		}
 		catch(PDOException $e)
 		{
@@ -53,6 +67,29 @@
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--借りている本の一覧を表示-->
 			<h1>貸出中書籍一覧</h1>
+			<?php if($booknum == "none") :?>
+				一冊も借りていません<br>
+			<?php else :?>
+				<table border='1'>
+					<tr bgcolor='#99FF99'><td>タイトル</td><td>著者</td><td>発行年月日</td></tr>
+					<?php
+					foreach($rows as $row){
+					?>
+					<tr bgcolor='#EEEEEE'>
+						<td><?=htmlspecialchars($row['name'], ENT_QUOTES)?></td>
+						<td><?=htmlspecialchars($row['author'], ENT_QUOTES)?></td>
+						<td><?=htmlspecialchars($row['data'], ENT_QUOTES)?></td>
+						<td>
+							<form action="lended.php" method="POST">
+								<input type="submit" value="詳細">
+								<input type="hidden" name="code" value="<?=$row['code']?>">
+							</form>
+						</td>
+					<?php
+					}
+					?>
+            	</table><br>
+			<?php endif ?>
 			<form action ='./top.php' method ='POST'><input type ='submit' value ='戻る'></form>
 		<?php else:?>
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
