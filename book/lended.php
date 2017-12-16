@@ -43,7 +43,7 @@
 
 			if(!empty($_POST['return']))
 			{
-				$loanflag = $_POST['return'];
+				$returnflag = $_POST['return'];
 			}
 
 			$sql = $db->prepare("SELECT code, name, author, data FROM book");
