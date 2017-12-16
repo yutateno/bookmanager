@@ -30,8 +30,9 @@
             // 以下処理
             
             // 自身のIDから借りている本を取得する
-			$sql = $db->prepare("SELECT code, name, author, data FROM book WHERE loanid = $userID");
-			$sql->execute();
+			$sql = $db->prepare("SELECT code, name, author, data FROM book WHERE loanid = :loanid");
+			$params = array(':loanid' => $userID);
+			$sql->execute($params);
 			
 			while($row =$sql->fetch())
 			{
