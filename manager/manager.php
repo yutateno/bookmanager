@@ -17,12 +17,10 @@
                 {
                     for($i =0;$i < count($manager);$i++)
                     {
-                        $db->beginTransaction();
-                        $sql =$db->prepare("UPDATE user SET manager ='yes' WHERE id = ? FOR UPDATE");
+                        $sql =$db->prepare("UPDATE user SET manager ='yes' WHERE id = ?");
                         $sql->bindValue(1,$manager[$i]);
                         $sql->execute();
 
-                        $db->commit();
                     }
                     $status ="success";
                 }
@@ -45,11 +43,9 @@
                     {
                         for($i =0;$i < count($manager);$i++)
                         {
-                            $db->beginTransaction();
-                            $sql =$db->prepare("UPDATE user SET manager ='no' WHERE id = ? FOR UPDATE");
+                            $sql =$db->prepare("UPDATE user SET manager ='no' WHERE id = ? ");
                             $sql->bindValue(1,$manager[$i]);
                             $sql->execute();
-                            $db->commit();
                         }
                         $status ="success";
                     }

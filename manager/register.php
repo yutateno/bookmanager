@@ -99,8 +99,8 @@
         <?php if($status == "success") : ?>
             <h2>登録完了</h2>
             <table>
-                <tr bgcolor='#99FF99'><th>ID</th><th>NAME</th><th>BIRTH</th><th>ADDRESS</th><th>PASSWORD</th><th>MANAGER</th></tr>
-                <?php echo "<tr bgcolor='#EEEEEE'><td>$id</td><td>$name</td><td>$birth</td><td>$address</td><td>ここには表示できません</td><td>$manager</td></tr>"; ?>
+                <tr bgcolor='#99FF99'><th>ID</th><th>NAME</th><th>PASSWORD</th><th>MANAGER</th></tr>
+                <?php echo "<tr bgcolor='#EEEEEE'><td>$id</td><td>$name</td><td>ここには表示できません</td><td>$manager</td></tr>"; ?>
             </table>
             <a href='index.php'>管理者画面へ戻る</a><br>
             <a href='register.php'>続けて登録</a>
