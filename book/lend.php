@@ -125,9 +125,9 @@
 					</form>
 				<?php else :?>
 					<?php if($loanid == $_SESSION['id']) :?> <!--ユーザーが貸し出しているとき-->
-						あなたが貸し出しています。
+						あなたが借りています。
 					<?php else :?>
-						貸し出している人がいるため借りられません
+						借りている人がいるため借りられません
 					<?php endif ?>
 				<?php endif ?>
 				<form action ='./list.php' method ='POST'><input type ='submit' value ='戻る'></form>
