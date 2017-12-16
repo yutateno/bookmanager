@@ -37,15 +37,12 @@
                 {
                     $status = "success";
                     $hash =  password_hash($password, PASSWORD_DEFAULT);
-                    
-                    $db->beginTransaction();
-                    $sql = $db->prepare("INSERT INTO user(id,name,password,manager) VALUES( ? , ? , ? , ?) FOR UPDATE");
+                    $sql = $db->prepare("INSERT INTO user(id,name,password,manager) VALUES( ? , ? , ? , ?)");
                     $sql->bindValue(1,"{$id}");
                     $sql->bindValue(2,"{$name}");
                     $sql->bindValue(3,"{$hash}");
                     $sql->bindValue(4,"{$manager}");
                     $sql->execute();
-                    $db->commit();
                 }
                 else if($idstatus =="true")
                 {
