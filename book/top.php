@@ -48,7 +48,7 @@
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
 			<h1>コンピュータ部備品貸出</h1>
 			<br>
-			<a href="./list.php">一覧</a><br><br>
+			<a href="./list.php">貸し出し</a><br><br>
 			<a href="./lendlist.php">借りている本</a><br><br>
 			<br>
 		<?php else:?>      <!--ここエラーじゃね？-->
