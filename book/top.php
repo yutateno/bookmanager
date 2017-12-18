@@ -47,6 +47,7 @@
 	<body>
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
 			<h1>コンピュータ部備品貸出</h1>
+			<span style ='float:right'><a href ='passwordchange.php'>パスワード変更</a></span>
 			<br>
 			<a href="./list.php">貸し出し</a><br><br>
 			<a href="./lendlist.php">借りている本</a><br><br>
