@@ -38,7 +38,7 @@
                     {
                         if($i == 0)
                         {
-                            $sql = $db->prepare("SELECT manager FROM user WHERE id = ? FOR UPDATE");
+                            $sql = $db->prepare("SELECT manager FROM user WHERE id = ?");
                         }
                         else
                         {
@@ -54,13 +54,12 @@
                         }
                     }
                     if($managererror =="false")
-                    {
-                        $db->beginTransaction();                        
+                    {                    
                         for($i =0; $i < count($delete); $i++)
                         {
                             if($i == 0)
                             {
-                                $sql = $db->prepare("DELETE FROM user WHERE id = ? FOR UPDATE");
+                                $sql = $db->prepare("DELETE FROM user WHERE id = ?");
                             }
                             else
                             {
@@ -70,7 +69,6 @@
                             $sql->bindValue(1, $delete[$i]);
                             $sql->execute();
                         }
-                        $db->commit();
                         $status ="success";
                     }
                     else
