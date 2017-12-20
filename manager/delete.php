@@ -115,10 +115,9 @@
     </head>
     <body>
         <h1>ユーザー削除</h1>
-        <?php if($status == "success") :
-              header("Location: ./groupautomanage.php");
-              exit();
-        ?>
+        <?php if($status == "success") : ?>
+              <h1>削除完了</h1>
+              <a href ="index.php">管理者メニューへ</a>
         <?php elseif($status =="delete") : ?>
             <h2>削除メンバー指定</h2>
             <form action ='delete.php' method ='POST'>
