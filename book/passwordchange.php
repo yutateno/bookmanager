@@ -92,7 +92,7 @@
 		        </p>
 		        <p><input type ='submit' value ='変更'></p>
 		    </form>
-		    <form action ='index.php' method ='POST'><input type ='submit' value ='戻る'></form>
+		    <form action ='top.php' method ='POST'><input type ='submit' value ='戻る'></form>
 		    <?php if($inputerror =="true") echo "未入力があります。<br>"; ?>
 		    <?php if($passerror =="nowpass") echo "現在のパスワードが間違っています。<br>"; ?>
 		    <?php if($passerror =="repass") echo "再入力のパスワードが間違っています。<br>"; ?>
