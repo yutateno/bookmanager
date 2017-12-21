@@ -102,9 +102,9 @@
     <head>
         <meta charset = "UTF-8">
         <title>ユーザー削除</title>
-        <a href = '../user/logout.php'>ログアウト</a>
+        <a href = '../login/logout.php'>ログアウト</a>
 		&emsp;
-		<a href ='../user/index.php'>ユーザーメニュー</a>
+		<a href ='../book/top.php'>ユーザーメニュー</a>
 		<?php
 		    if($_SESSION['manager'] == "yes")
 		    {

@@ -106,9 +106,9 @@
     <head>
         <meta charset = "UTF-8">
         <title>管理者権限編集</title>
-        <a href = '../user/logout.php'>ログアウト</a>
+        <a href = '../login/logout.php'>ログアウト</a>
 		&emsp;
-		<a href ='../user/index.php'>ユーザーメニュー</a>
+		<a href ='../book/top.php'>ユーザーメニュー</a>
 		<?php
 		    if($_SESSION['manager'] == "yes")
 		    {
