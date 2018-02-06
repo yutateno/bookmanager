@@ -39,10 +39,12 @@
 			}
 			
 			$sql->execute();
-			
+
+			$count = 0;
 			while($row =$sql->fetch())
 			{
 				$rows[] = $row;
+				$count++;
 			}
 		}
 		catch(PDOException $e)
@@ -64,7 +66,7 @@
 		<?php
 		    if($_SESSION['manager'] == "yes")
 		    {
-		            echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
+		        echo "<span style ='float:right'><a href = '../manager/index.php'>管理者メニュー</a></span>";
 		    }
 		?>
 		<hr>
@@ -75,6 +77,9 @@
 			<h1>書籍一覧</h1>
 			<form action ="list.php" method ="POST"><input type ="text" name ="searchname">&emsp;&emsp;<input type ="submit" value ="検索"></form>
 			<br>
+			<?php if($count == 0) :?>
+			検索結果無し
+			<?php else:?>
 			<table border='1'>
 				<tr bgcolor='#99FF99'><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
 				<?php
@@ -99,6 +104,7 @@
 				}
 				?>
             </table><br>
+			<?php endif ?>
 			<form action ='./top.php' method ='POST'><input type ='submit' value ='戻る'></form>
 		<?php else:?>      <!--ここエラーじゃね？-->
 			<h1>ーーーーーーーーーー　エラー　ーーーーーーーーーー</h1>
