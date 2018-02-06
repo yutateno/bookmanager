@@ -28,10 +28,10 @@
             // 以下処理
             
 			// 一覧を取得
-			if(!empty($_POST["bookname"]) && isset($_POST["bookname"]))
+			if(!empty($_POST["searchname"]) && isset($_POST["searchname"]))
 			{
-				$sql = $db->prepare("SELECT code, name, author, data, loan FROM book WHERE name LIKE %?%");
-				$sql->bindValue(1,$_POST["bookname"]);
+				$sql = $db->prepare("SELECT code, name, author, data, loan FROM book WHERE name LIKE :searchname");
+				$sql->bindValue(':searchname','%'.$_POST["searchname"].'%');
 			}
 			else
 			{
@@ -73,7 +73,7 @@
 		<?php if($loginget == "true") :?>		<!--ログイン済み-->
             <!--一覧を表示-->
 			<h1>書籍一覧</h1>
-			<form action ="list.php" method ="POST"><input type ="text" name ="bookname">&emsp;&emsp;<input type ="submit" value ="検索"></form>
+			<form action ="list.php" method ="POST"><input type ="text" name ="searchname">&emsp;&emsp;<input type ="submit" value ="検索"></form>
 			<br>
 			<table border='1'>
 				<tr bgcolor='#99FF99'><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td></tr>
