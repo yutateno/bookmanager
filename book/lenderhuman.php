@@ -71,7 +71,7 @@
             <!--借りている人の一覧「書籍名」「人」「借りた日」-->
 			<h1>書籍貸し出し中のみ一覧</h1>
 			<?php if($booknum == "none") :?>
-				削除できる書籍が存在しません。<br>
+				誰も書籍を借りていません。<br>
 			<?php else :?>
 				<table border='1'>
 					<tr bgcolor='#99FF99'><td>タイトル</td><td>著者</td><td>発行年月日</td><td>貸出有無</td><td>貸出者</td></tr>
@@ -83,6 +83,12 @@
 					<td><?=htmlspecialchars($row['data'], ENT_QUOTES)?></td>
 					<td><?=htmlspecialchars($row['loan'], ENT_QUOTES)?></td>
 					<td><?=htmlspecialchars($row['loanid'], ENT_QUOTES)?></td>
+						<td>
+							<form action="lended.php" method="POST">
+								<input type="submit" value="詳細">
+								<input type="hidden" name="code" value="<?=$row['code']?>">
+							</form>
+						</td>
 					<?php
 					}
 					?>
